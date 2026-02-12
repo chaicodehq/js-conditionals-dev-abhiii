@@ -32,4 +32,57 @@
  */
 export function getSeasonActivity(month, temperature) {
   // Your code here
+  const act= (season,temp) => {
+      switch(season){
+
+        case "Winter":
+          if (temp<0) return "skiing"
+          else return "ice skating"
+
+        case "Spring":
+          if (temp<=20) return "museum visit"
+          else return "hiking"
+
+        case "Summer":
+          if (temp<=35) return "cycling"
+          else return "swimming"
+
+        case "Autumn":
+          if (temp<=15) return "reading at a cafe"
+          else return "nature walk"
+
+        default:
+          return "Enter proper details"
+      }
+  };
+
+  if((month===12) || (month === 1) || (month=== 2)) {
+    return {
+      season: "Winter",
+      activity: act("Winter", temperature)
+    };
+  }
+
+  else if((month=== 3) || (month === 4) || (month=== 5)) {
+    return {
+      season: "Spring",
+      activity: act("Spring", temperature)
+    };
+  }
+
+  else if((month=== 6) || (month === 7) || (month=== 8)) {
+    return {
+      season: "Summer",
+      activity: act("Summer", temperature)
+    };
+  }
+
+  else if((month=== 9) || (month === 10) || (month=== 11)) {
+    return {
+      season: "Autumn",
+      activity: act("Autumn", temperature)
+    };
+  }
+
+  else return null
 }

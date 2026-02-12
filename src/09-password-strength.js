@@ -27,4 +27,47 @@
  */
 export function checkPasswordStrength(password) {
   // Your code here
+  let criteria = 0
+
+  function passwordcontainsuppercase(password){
+    for(let i=0; i<password.length; i++){
+      if(((password.charCodeAt(i))<=90) && ((password.charCodeAt(i))>=65) ) return true
+    }
+    return false
+  }
+
+  function passwordcontainslowercase(password){
+    for(let i=0; i<password.length; i++){
+      if(((password.charCodeAt(i))<=122) && ((password.charCodeAt(i))>=97) ) return true
+    }
+    return false
+  }
+
+  function passwordcontainsnumber(password){
+    for(let i=0; i<password.length; i++){
+      if(((password.charCodeAt(i))<=57) && ((password.charCodeAt(i))>=48) ) return true
+    }
+    return false    
+  }
+
+  function passwordcontainssymbol(password){
+    for(let i=0; i<password.length; i++){
+      if((password.charAt(i)=='!') || (password.charAt(i)=='@') || (password.charAt(i)=='#') || (password.charAt(i)=='$') || (password.charAt(i)=='%') || (password.charAt(i)=='^') || (password.charAt(i)=='&') || (password.charAt(i)=='*') || (password.charAt(i)=='(') || (password.charAt(i)==')') || (password.charAt(i)=='_') || (password.charAt(i)=='-') || (password.charAt(i)=='+') || (password.charAt(i)=='=') || password.charAt(i)=='{' || (password.charAt(i)=='}') || (password.charAt(i)=='[') || (password.charAt(i)==']') || (password.charAt(i)=='|') || (password.charAt(i)==':') || (password.charAt(i)==';') || (password.charAt(i)==',') || (password.charAt(i)=='.') || (password.charAt(i)=='<') || (password.charAt(i)=='>')) 
+        return true
+    }
+    return false
+  }
+
+  if((!(typeof password === 'string')) || (password.length === 0)) return "weak" //if the reverse the order of OR it will throw error, for null values it will just check password.length == 0 and since null doesn't contain any value it will throw erro
+  if(password.length>= 8) criteria++
+  if(passwordcontainsuppercase(password)=== true) criteria++
+  if(passwordcontainslowercase(password)=== true) criteria++
+  if(passwordcontainsnumber(password)=== true) criteria++
+  if(passwordcontainssymbol(password)=== true) criteria++
+
+  if(criteria<=1) return "weak"
+  else if((criteria<=3) && (criteria>1)) return "medium"
+  else if(criteria===4) return "strong"
+  else if(criteria===5) return "very strong"
+  else return "weak"
 }
